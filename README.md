@@ -31,6 +31,22 @@ I have randomly shuffled the data before creating the training set, so I could f
 I started out with a normal fully connected network, with only one layer (100 nodes). I tried this out to see, if the model is receiveing the data correctly and to see if the predictions are in a reasonable scale. After this, I started to build in convolutional layers, however I faced the problem of running out of the GPUs memory, as the original picture size was too big. I then decided to resize the picture, that helped me to use bigger networks, with not a lot of loss of information. I have also changed the pictures to RGB as opposed to the default of opencv, that reads in pictures as BGR. 
 Finally, after reading so much good about it, I tried the Nvidia [architecture](https://devblogs.nvidia.com/deep-learning-self-driving-cars/) for the model. This model was working well, however it slightly overfitted the data. By applying dropout, I have reduced this issue (dropout of 0.2 on 2 dense layers). I used relu activation functions on all the layers. I was happy with this architecture, as it drived perfectly on the first lap. For future work, I could build a model (ie: get data from the second lap) that would be able to drive through the whole second lap.
 
+*Every Conv and dense layer, besides the last one is followed be relu activation fn*
+Input image: 80x160x3
+Crop image:  30x160x3
+Normalize image
+Conv2d (5x5x12)
+Conv2d (5x5x24)
+Conv2d (5x5x48)
+Conv2d (3x3x64)
+Conv2d (3x3x64)
+Flatten()
+Dense(100)
+Dropout(0.2)
+Dense(50)
+Dropout(0.2)
+Dense(10)
+Dense(1)
 
 #### Training
 
